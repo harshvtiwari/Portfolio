@@ -577,6 +577,7 @@ section form {
     height: -webkit-max-content;
     height: -moz-max-content;
     height: max-content;
+    width: 380px;
   }
   .contact-box {
     -webkit-box-ordinal-group: 2;
