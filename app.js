@@ -17,5 +17,20 @@ const navSlide = () => {
 
         burger.classList.toggle("toggleBurger");
     });
+
+
 }
+
+
 navSlide();
+
+const themeSwitcher = () => {
+    const switchIt = document.querySelector(".themeSwitch");
+    const header = document.querySelector("body");
+
+    switchIt.addEventListener('click', () => {
+        header.classList.toggle("body-dark");
+    });
+}
+
+themeSwitcher();
