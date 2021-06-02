@@ -21,7 +21,7 @@ hamburger.addEventListener('click', (e) => {
 });
 
 window.addEventListener("click", (e) => {
-    if (e.target.parentNode != navbar) {
+    if (e.target != hamburger && e.target.parentNode != hamburger && e.target != document.querySelector("ul") && e.target != navbar && e.target != document.querySelector(".name")) {
         links.classList.add("displayOff");
         hamburger.classList.remove("hamcross");
     }
