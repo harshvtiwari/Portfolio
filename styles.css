@@ -1,13 +1,19 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
+  scrollbar-width: none;
+  text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
-* a {
-  text-decoration: none;
+* ::-webkit-scrollbar {
+  display: none;
 }
 
 .navbar {
@@ -23,9 +29,8 @@
           align-items: center;
   width: 100vw;
   padding: 20px 0 20px 0;
-  -webkit-transition: .2s ease;
-  transition: .2s ease;
   background: #121617;
+  z-index: 25;
 }
 
 .navbar .name {
@@ -55,8 +60,31 @@
 }
 
 .navbar .links ul li a {
+  position: relative;
   text-decoration: none;
   color: #beac9d;
+}
+
+.navbar .links ul li a::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #beac9d;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.navbar .links ul li a:hover::before {
+  -webkit-transform: scaleX(1.2);
+          transform: scaleX(1.2);
 }
 
 .navbar .hamburger {
@@ -112,6 +140,13 @@
           transform: translate(13px, -6px) rotatez(45deg);
 }
 
+.scroll-effect {
+  position: fixed;
+  width: 0;
+  height: 80px;
+  background-color: red;
+}
+
 .containerOne {
   padding-top: 65px;
   width: 100%;
@@ -154,12 +189,15 @@
 }
 
 .containerTwo .resume {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 300;
   padding: 10px 150px 10px 150px;
   border: 2px solid black;
   border-radius: 150px;
   cursor: pointer;
   letter-spacing: 1px;
+  position: relative;
+  color: black;
 }
 
 .containerTwo .resume:active {
@@ -168,7 +206,7 @@
 }
 
 #skills {
-  width: 100%;
+  width: 85%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -178,37 +216,79 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  margin: auto;
+  padding: 15px;
+  background: #121617;
+  border-radius: 10px;
+  -webkit-box-shadow: -2px 2px 8px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: -2px 2px 8px 2px rgba(0, 0, 0, 0.5);
 }
 
-#skills fieldset {
-  width: 80%;
-  padding: 20px;
-  margin: 10px;
+#skills .languages,
+#skills .technologies,
+#skills .tools {
+  width: 100%;
+  min-height: 50vh;
+  margin: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  border: 2px solid black;
+  background: rgba(167, 167, 167, 0.15);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 10px;
 }
 
-#skills fieldset legend {
-  padding: 0 10px 0 10px;
+#skills .languages span,
+#skills .technologies span,
+#skills .tools span {
+  color: white;
+  font-size: large;
+  width: 100%;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px 8px 0 0;
+}
+
+#skills .languages .lang-box,
+#skills .languages .tech-box,
+#skills .languages .tools-box,
+#skills .technologies .lang-box,
+#skills .technologies .tech-box,
+#skills .technologies .tools-box,
+#skills .tools .lang-box,
+#skills .tools .tech-box,
+#skills .tools .tools-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 20px;
 }
 
 .contact {
-  width: 100%;
+  width: 30%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -222,13 +302,36 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 50px 0 50px 0;
+  margin: auto;
+  background: #282c2d;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  margin-top: 50px;
+  -webkit-box-shadow: -2px 2px 8px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: -2px 2px 8px 2px rgba(0, 0, 0, 0.5);
 }
 
-.contact fieldset {
-  width: 80%;
-  padding: 20px;
-  margin: 10px;
+.contact span {
+  color: white;
+  font-size: large;
+  width: 100%;
+  height: 5vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px 8px 0 0;
+  padding: 10px;
+}
+
+.contact .links {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -240,15 +343,7 @@
           justify-content: space-evenly;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  border: none;
-  border-top: 2px solid black;
-  -webkit-box-shadow: 0px 3px 5px 1px #a8a8a8;
-          box-shadow: 0px 3px 5px 1px #a8a8a8;
-}
-
-.contact fieldset legend {
-  padding: 0 10px 0 10px;
-  background-color: white;
+  padding: 20px;
 }
 
 footer {
@@ -273,8 +368,8 @@ footer {
     position: absolute;
     top: 50px;
     background: #121617;
-    -webkit-transition: .2s ease;
-    transition: .2s ease;
+    -webkit-transition: 0.2s ease;
+    transition: 0.2s ease;
   }
   .navbar .links ul {
     -webkit-box-orient: vertical;
@@ -313,10 +408,81 @@ footer {
   .containerTwo .resume {
     padding: 10px 100px 10px 100px;
   }
-  .contact fieldset {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+  #skills {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .contact {
+    width: 80%;
+  }
+}
+
+.bubbles {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.bubbles .bubble-exo {
+  position: absolute;
+  border-radius: 50%;
+  -webkit-animation: animate 5s linear infinite;
+          animation: animate 5s linear infinite;
+}
+
+.bubbles .bubble-exo:hover {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+  -webkit-animation: animate 5s linear infinite;
+          animation: animate 5s linear infinite;
+}
+
+@-webkit-keyframes animate {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  25% {
+    -webkit-transform: translateX(-50px);
+            transform: translateX(-50px);
+  }
+  75% {
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes animate {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  25% {
+    -webkit-transform: translateX(-50px);
+            transform: translateX(-50px);
+  }
+  75% {
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
 }
 /*# sourceMappingURL=styles.css.map */
